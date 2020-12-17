@@ -41,7 +41,19 @@ return [
             'provider' => 'users',
         ],
 
-        'api' => [
+        'customer' => [
+            'driver' => 'passport',
+            'provider' => 'customers',
+            'hash' => false,
+        ],
+
+        'company' => [
+            'driver' => 'passport',
+            'provider' => 'companies',
+            'hash' => false,
+        ],
+
+        'admin' => [
             'driver' => 'passport',
             'provider' => 'users',
             'hash' => false,
@@ -71,10 +83,15 @@ return [
             'model' => App\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'customers' => [
+            'driver' => 'eloquent',
+            'model' => App\Customer::class,
+        ],
+
+        'companies' => [
+            'driver' => 'eloquent',
+            'model' => App\Company::class,
+        ],
     ],
 
     /*
@@ -95,6 +112,20 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'customers' => [
+            'provider' => 'customers',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'companies' => [
+            'provider' => 'companies',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

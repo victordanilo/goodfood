@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Company extends Authenticatable
 {
     use SoftDeletes, HasApiTokens, Notifiable;
 
@@ -18,9 +18,15 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'trade',
+        'cpf_cnpj',
+        'owner',
+        'phone',
         'email',
         'password',
+        'delivery_cost',
         'avatar',
+        'level',
     ];
 
     /**

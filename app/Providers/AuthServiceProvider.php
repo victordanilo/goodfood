@@ -25,6 +25,11 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+        Passport::tokensCan([
+            'customer' => 'The place only customer can access',
+            'company' => 'The place only company can access',
+            'admin' => 'The place only admin can access',
+        ]);
         Passport::routes();
     }
 }

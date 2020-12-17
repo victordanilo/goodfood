@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Customer extends Authenticatable
 {
     use SoftDeletes, HasApiTokens, Notifiable;
 
@@ -18,6 +18,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'cpf_cnpj',
+        'phone',
         'email',
         'password',
         'avatar',
