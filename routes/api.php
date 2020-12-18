@@ -148,6 +148,54 @@ Route::group(['prefix' => 'admin', 'middleware' => 'api', 'guard' => 'admin'], f
                 'uses' => 'CompanyController@destroy',
             ]);
         });
+        Route::group(['prefix' => 'customer'], function () {
+            Route::get('/', [
+                'as' => 'api.admin.customer.list',
+                'uses' => 'CustomerController@index',
+            ]);
+
+            Route::post('/', [
+                'as' => 'api.admin.customer.add',
+                'uses' => 'CustomerController@store',
+            ]);
+
+            Route::get('/{customer}', [
+                'as' => 'api.admin.customer.show',
+                'uses' => 'CustomerController@show',
+            ]);
+
+            Route::put('/{customer}', [
+                'as' => 'api.admin.customer.update',
+                'uses' => 'CustomerController@update',
+            ]);
+
+            Route::delete('/{customer}', [
+                'as' => 'api.admin.customer.delete',
+                'uses' => 'CustomerController@destroy',
+            ]);
+
+            Route::group(['prefix' => '/{customer}/address'], function () {
+                Route::get('/', [
+                    'as' => 'api.admin.customer.address.list',
+                    'uses' => 'CustomerAddressController@index',
+                ]);
+
+                Route::post('/', [
+                    'as' => 'api.admin.customer.address.add',
+                    'uses' => 'CustomerAddressController@store',
+                ]);
+
+                Route::put('/{address}', [
+                    'as' => 'api.admin.customer.address.update',
+                    'uses' => 'CustomerAddressController@update',
+                ]);
+
+                Route::delete('/{address}', [
+                    'as' => 'api.admin.customer.address.delete',
+                    'uses' => 'CustomerAddressController@destroy',
+                ]);
+            });
+        });
     });
 });
 
@@ -192,6 +240,37 @@ Route::group(['middleware' => 'api', 'guard' => 'customer'], function () {
         Route::group(['middleware' => ['auth:customer', 'scope.validate']], function () {
             Route::get('logout', 'AuthController@logout');
             Route::get('user', 'AuthController@user');
+        });
+    });
+
+    Route::group(['middleware' => ['auth:customer', 'scope.validate']], function () {
+        Route::group(['prefix' => 'profile', 'middleware' => 'load_profile_customer'], function () {
+            Route::put('/', [
+                'as' => 'api.profile.update',
+                'uses' => 'CustomerController@update',
+            ]);
+
+            Route::group(['prefix' => 'address'], function () {
+                Route::get('/', [
+                    'as' => 'api.profile.address.list',
+                    'uses' => 'CustomerAddressController@index',
+                ]);
+
+                Route::post('/', [
+                    'as' => 'api.profile.address.add',
+                    'uses' => 'CustomerAddressController@store',
+                ]);
+
+                Route::put('/{address}', [
+                    'as' => 'api.profile.address.update',
+                    'uses' => 'CustomerAddressController@update',
+                ]);
+
+                Route::delete('/{address}', [
+                    'as' => 'api.profile.address.delete',
+                    'uses' => 'CustomerAddressController@destroy',
+                ]);
+            });
         });
     });
 });

@@ -71,5 +71,6 @@ class Kernel extends HttpKernel
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
         'load_profile_user' => \App\Http\Middleware\InjectCurrentProfileUser::class,
         'load_profile_company' => \App\Http\Middleware\InjectCurrentProfileCompany::class,
+        'load_profile_customer' => \App\Http\Middleware\InjectCurrentProfileCustomer::class,
     ];
 }
