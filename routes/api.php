@@ -31,6 +31,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'api', 'guard' => 'admin'], f
     });
 
     Route::group(['middleware' => ['auth:admin', 'scope.validate']], function () {
+        Route::group(['prefix' => 'profile', 'middleware' => ['load_profile_user']], function () {
+            Route::put('/', [
+                'as' => 'api.admin.profile.update',
+                'uses' => 'UserController@update',
+            ]);
+        });
         Route::group(['prefix' => 'role', 'middleware' => 'role:admin'], function () {
             Route::get('/', [
                 'as' => 'api.admin.role.list',
@@ -81,6 +87,39 @@ Route::group(['prefix' => 'admin', 'middleware' => 'api', 'guard' => 'admin'], f
             Route::delete('/{permission}', [
                 'as' => 'api.admin.permission.delete',
                 'uses' => 'PermissionController@destroy',
+            ]);
+        });
+        Route::group(['prefix' => 'user'], function () {
+            Route::get('/', [
+                'as' => 'api.admin.user.list',
+                'uses' => 'UserController@index',
+            ]);
+
+            Route::post('/', [
+                'as' => 'api.admin.user.add',
+                'uses' => 'UserController@store',
+                'middleware' => 'role:admin',
+            ]);
+
+            Route::get('/{user}', [
+                'as' => 'api.admin.user.show',
+                'uses' => 'UserController@show',
+            ]);
+
+            Route::put('/{user}', [
+                'as' => 'api.admin.user.update',
+                'uses' => 'UserController@update',
+            ]);
+
+            Route::delete('/{user}', [
+                'as' => 'api.admin.user.delete',
+                'uses' => 'UserController@destroy',
+            ]);
+
+            Route::post('/{user}/setrole', [
+                'as' => 'api.admin.user.set_role',
+                'uses' => 'UserController@setRole',
+                'middleware' => 'role:admin',
             ]);
         });
     });
