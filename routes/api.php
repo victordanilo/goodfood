@@ -29,6 +29,61 @@ Route::group(['prefix' => 'admin', 'middleware' => 'api', 'guard' => 'admin'], f
             Route::get('user', 'AuthController@user');
         });
     });
+
+    Route::group(['middleware' => ['auth:admin', 'scope.validate']], function () {
+        Route::group(['prefix' => 'role', 'middleware' => 'role:admin'], function () {
+            Route::get('/', [
+                'as' => 'api.admin.role.list',
+                'uses' => 'RoleController@index',
+            ]);
+
+            Route::post('/', [
+                'as' => 'api.admin.role.add',
+                'uses' => 'RoleController@store',
+            ]);
+
+            Route::put('/{role}', [
+                'as' => 'api.admin.role.update',
+                'uses' => 'RoleController@update',
+            ]);
+
+            Route::delete('/{role}', [
+                'as' => 'api.admin.role.delete',
+                'uses' => 'RoleController@destroy',
+            ]);
+
+            Route::get('/{role}/permissions', [
+                'as' => 'api.admin.role.get_permissions',
+                'uses' => 'RoleController@permissions',
+            ]);
+
+            Route::post('/{role}/permissions', [
+                'as' => 'api.admin.role.sync_permissions',
+                'uses' => 'RoleController@syncPermissions',
+            ]);
+        });
+        Route::group(['prefix' => 'permission', 'middleware' => 'role:admin'], function () {
+            Route::get('/', [
+                'as' => 'api.admin.permission.list',
+                'uses' => 'PermissionController@index',
+            ]);
+
+            Route::post('/', [
+                'as' => 'api.admin.permission.add',
+                'uses' => 'PermissionController@store',
+            ]);
+
+            Route::put('/{permission}', [
+                'as' => 'api.admin.permission.update',
+                'uses' => 'PermissionController@update',
+            ]);
+
+            Route::delete('/{permission}', [
+                'as' => 'api.admin.permission.delete',
+                'uses' => 'PermissionController@destroy',
+            ]);
+        });
+    });
 });
 
 Route::group(['prefix' => 'manager', 'middleware' => 'api', 'guard' => 'company'], function () {

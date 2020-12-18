@@ -3,13 +3,14 @@
 namespace App;
 
 use Laravel\Passport\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Customer extends Authenticatable
 {
-    use SoftDeletes, HasApiTokens, Notifiable;
+    use SoftDeletes, HasApiTokens, HasRoles, Notifiable;
 
     /**
      * The attributes that are mass assignable.
