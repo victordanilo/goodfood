@@ -29,6 +29,15 @@ class Company extends Authenticatable
         'delivery_cost',
         'avatar',
         'level',
+        'lat',
+        'lng',
+        'street',
+        'n',
+        'complement',
+        'district',
+        'zip_code',
+        'city',
+        'uf',
     ];
 
     /**

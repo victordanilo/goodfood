@@ -19,6 +19,7 @@ class CreateCompaniesTable extends Migration
             $table->string('trade')->nullable();
             $table->string('cpf_cnpj')->nullable();
             $table->string('owner')->nullable();
+            $table->string('phone')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

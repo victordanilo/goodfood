@@ -122,6 +122,32 @@ Route::group(['prefix' => 'admin', 'middleware' => 'api', 'guard' => 'admin'], f
                 'middleware' => 'role:admin',
             ]);
         });
+        Route::group(['prefix' => 'company'], function () {
+            Route::get('/', [
+                'as' => 'api.admin.company.list',
+                'uses' => 'CompanyController@index',
+            ]);
+
+            Route::post('/', [
+                'as' => 'api.admin.company.add',
+                'uses' => 'CompanyController@store',
+            ]);
+
+            Route::get('/{company}', [
+                'as' => 'api.admin.company.show',
+                'uses' => 'CompanyController@show',
+            ]);
+
+            Route::put('/{company}', [
+                'as' => 'api.admin.company.update',
+                'uses' => 'CompanyController@update',
+            ]);
+
+            Route::delete('/{company}', [
+                'as' => 'api.admin.company.delete',
+                'uses' => 'CompanyController@destroy',
+            ]);
+        });
     });
 });
 
@@ -139,6 +165,15 @@ Route::group(['prefix' => 'manager', 'middleware' => 'api', 'guard' => 'company'
         Route::group(['middleware' => ['auth:company', 'scope.validate']], function () {
             Route::get('logout', 'AuthController@logout');
             Route::get('user', 'AuthController@user');
+        });
+    });
+
+    Route::group(['middleware' => ['api', 'auth:company', 'scope.validate']], function () {
+        Route::group(['prefix' => 'profile', 'middleware' => ['load_profile_company']], function () {
+            Route::put('/', [
+                'as' => 'api.manager.profile.update',
+                'uses' => 'CompanyController@update',
+            ]);
         });
     });
 });
