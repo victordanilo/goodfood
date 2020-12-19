@@ -196,6 +196,29 @@ Route::group(['prefix' => 'admin', 'middleware' => 'api', 'guard' => 'admin'], f
                 ]);
             });
         });
+        Route::group(['prefix' => 'product'], function () {
+            Route::group(['prefix' => 'category'], function () {
+                Route::get('/', [
+                    'as' => 'api.admin.product.category.list',
+                    'uses' => 'ProductCategoryController@index',
+                ]);
+
+                Route::post('/', [
+                    'as' => 'api.admin.product.category.add',
+                    'uses' => 'ProductCategoryController@store',
+                ]);
+
+                Route::put('/{category}', [
+                    'as' => 'api.admin.product.category.update',
+                    'uses' => 'ProductCategoryController@update',
+                ]);
+
+                Route::delete('/{category}', [
+                    'as' => 'api.admin.product.category.delete',
+                    'uses' => 'ProductCategoryController@destroy',
+                ]);
+            });
+        });
     });
 });
 
@@ -221,6 +244,12 @@ Route::group(['prefix' => 'manager', 'middleware' => 'api', 'guard' => 'company'
             Route::put('/', [
                 'as' => 'api.manager.profile.update',
                 'uses' => 'CompanyController@update',
+            ]);
+        });
+        Route::group(['prefix' => 'product'], function () {
+            Route::get('/category', [
+                'as' => 'api.manager.product.category',
+                'uses' => 'ProductCategoryController@index',
             ]);
         });
     });
@@ -272,5 +301,12 @@ Route::group(['middleware' => 'api', 'guard' => 'customer'], function () {
                 ]);
             });
         });
+    });
+
+    Route::group(['prefix' => 'product'], function () {
+        Route::get('/category', [
+            'as' => 'api.product.category',
+            'uses' => 'ProductCategoryController@index',
+        ]);
     });
 });

@@ -33,6 +33,11 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'customer.update', 'guard_name' => 'admin']);
         Permission::create(['name' => 'customer.delete', 'guard_name' => 'admin']);
 
+        Permission::create(['name' => 'product_category.read', 'guard_name' => 'admin']);
+        Permission::create(['name' => 'product_category.create', 'guard_name' => 'admin']);
+        Permission::create(['name' => 'product_category.update', 'guard_name' => 'admin']);
+        Permission::create(['name' => 'product_category.delete', 'guard_name' => 'admin']);
+
         // Guard Company
         Permission::create(['name' => 'company.read', 'guard_name' => 'company']);
         Permission::create(['name' => 'company.create', 'guard_name' => 'company']);
