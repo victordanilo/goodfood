@@ -22,4 +22,9 @@ class ProductCategory extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function products()
+    {
+        return $this->hasMany('App\Product', 'category_uuid', 'uuid');
+    }
 }

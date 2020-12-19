@@ -4,11 +4,13 @@ namespace App\Providers;
 
 use App\User;
 use App\Company;
+use App\Product;
 use App\Customer;
 use App\ProductCategory;
 use App\Policies\UserPolicy;
 use Laravel\Passport\Passport;
 use App\Policies\CompanyPolicy;
+use App\Policies\ProductPolicy;
 use App\Policies\CustomerPolicy;
 use Illuminate\Support\Facades\Gate;
 use App\Policies\ProductCategoryPolicy;
@@ -27,6 +29,7 @@ class AuthServiceProvider extends ServiceProvider
         Company::class => CompanyPolicy::class,
         Customer::class => CustomerPolicy::class,
         ProductCategory::class => ProductCategoryPolicy::class,
+        Product::class => ProductPolicy::class,
     ];
 
     /**

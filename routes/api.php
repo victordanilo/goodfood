@@ -197,6 +197,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'api', 'guard' => 'admin'], f
             });
         });
         Route::group(['prefix' => 'product'], function () {
+            Route::get('/', [
+                'as' => 'api.admin.product.list',
+                'uses' => 'ProductController@index',
+            ]);
+
             Route::group(['prefix' => 'category'], function () {
                 Route::get('/', [
                     'as' => 'api.admin.product.category.list',
@@ -247,6 +252,26 @@ Route::group(['prefix' => 'manager', 'middleware' => 'api', 'guard' => 'company'
             ]);
         });
         Route::group(['prefix' => 'product'], function () {
+            Route::get('/', [
+                'as' => 'api.manager.product.list',
+                'uses' => 'ProductController@indexCompany',
+            ]);
+
+            Route::post('/', [
+                'as' => 'api.manager.product.add',
+                'uses' => 'ProductController@store',
+            ]);
+
+            Route::put('/{product}', [
+                'as' => 'api.manager.product.update',
+                'uses' => 'ProductController@update',
+            ]);
+
+            Route::delete('/{product}', [
+                'as' => 'api.manager.product.delete',
+                'uses' => 'ProductController@destroy',
+            ]);
+
             Route::get('/category', [
                 'as' => 'api.manager.product.category',
                 'uses' => 'ProductCategoryController@index',
@@ -304,6 +329,11 @@ Route::group(['middleware' => 'api', 'guard' => 'customer'], function () {
     });
 
     Route::group(['prefix' => 'product'], function () {
+        Route::get('/', [
+            'as' => 'api.product.list',
+            'uses' => 'ProductController@index',
+        ]);
+
         Route::get('/category', [
             'as' => 'api.product.category',
             'uses' => 'ProductCategoryController@index',
