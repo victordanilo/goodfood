@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Company;
 use App\Helpers\Upload;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
 
@@ -101,5 +103,43 @@ class CompanyController extends Controller
         }
 
         return response()->json(['message' => __('common.deleted_fail')], 422);
+    }
+
+    /**
+     * Criar credenciais do vendedor.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function createCredential(Request $request)
+    {
+        $request->validate([
+            'code' => 'required|string',
+        ]);
+
+        $response = Http::withHeaders([
+            'accept' => 'application/json',
+            'content-type' => 'application/x-www-form-urlencoded',
+        ])->post('https://api.mercadopago.com/oauth/token', [
+            'grant_type' => 'authorization_code',
+            'redirect_uri' => config('mp.redirect_url'),
+            'client_secret' => config('mp.access_token'),
+            'code' => $request->input('code'),
+        ]);
+
+        if ($response->ok()) {
+            $credential = $response->json();
+            Auth::user()->credential()->create([
+                'mp_user_id' => $credential['user_id'],
+                'public_key' => $credential['public_key'],
+                'access_token' => $credential['access_token'],
+                'refresh_token' => $credential['refresh_token'],
+                'expires_in' => $credential['expires_in'],
+            ]);
+
+            return response()->json(['message' => __('common.created_credential_success')], 201);
+        }
+
+        return response()->json(['message' => __('common.created_credential_fail')], 422);
     }
 }

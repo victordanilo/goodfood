@@ -23,4 +23,7 @@ return [
 
     'removed_success' => 'removed successfully!',
     'removed_fail' => 'failed to be removed!',
+
+    'created_credential_success' => 'Credential successfully created!',
+    'created_credential_fail' => 'Failed to create credential!',
 ];

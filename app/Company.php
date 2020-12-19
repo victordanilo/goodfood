@@ -58,6 +58,11 @@ class Company extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function credential()
+    {
+        return $this->hasOne('App\MercadoPagoCredential', 'company_id', 'id');
+    }
+
     public function products()
     {
         return $this->hasMany('App\Product', 'company_uuid', 'uuid');

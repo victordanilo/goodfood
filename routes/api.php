@@ -250,6 +250,11 @@ Route::group(['prefix' => 'manager', 'middleware' => 'api', 'guard' => 'company'
                 'as' => 'api.manager.profile.update',
                 'uses' => 'CompanyController@update',
             ]);
+
+            Route::post('/credential', [
+                'as' => 'api.manager.profile.create_credential',
+                'uses' => 'CompanyController@createCredential',
+            ]);
         });
         Route::group(['prefix' => 'product'], function () {
             Route::get('/', [
