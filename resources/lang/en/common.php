@@ -26,4 +26,6 @@ return [
 
     'created_credential_success' => 'Credential successfully created!',
     'created_credential_fail' => 'Failed to create credential!',
+    'access_token_not_defined' => 'Credentials have not been defined!',
+    'seller_without_credential' => 'Seller is without credentials',
 ];
