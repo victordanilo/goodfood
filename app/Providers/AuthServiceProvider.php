@@ -2,12 +2,16 @@
 
 namespace App\Providers;
 
+use App\Plan;
 use App\User;
+use App\Order;
 use App\Company;
 use App\Product;
 use App\Customer;
 use App\ProductCategory;
+use App\Policies\PlanPolicy;
 use App\Policies\UserPolicy;
+use App\Policies\OrderPolicy;
 use Laravel\Passport\Passport;
 use App\Policies\CompanyPolicy;
 use App\Policies\ProductPolicy;
@@ -30,6 +34,8 @@ class AuthServiceProvider extends ServiceProvider
         Customer::class => CustomerPolicy::class,
         ProductCategory::class => ProductCategoryPolicy::class,
         Product::class => ProductPolicy::class,
+        Order::class => OrderPolicy::class,
+        Plan::class => PlanPolicy::class,
     ];
 
     /**

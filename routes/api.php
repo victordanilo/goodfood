@@ -240,6 +240,32 @@ Route::group(['prefix' => 'admin', 'middleware' => 'api', 'guard' => 'admin'], f
                 'uses' => 'OrderController@destroy',
             ]);
         });
+        Route::group(['prefix' => 'plan'], function () {
+            Route::get('/', [
+                'as' => 'api.admin.plan.list',
+                'uses' => 'PlanController@index',
+            ]);
+
+            Route::post('/', [
+                'as' => 'api.admin.plan.add',
+                'uses' => 'PlanController@store',
+            ]);
+
+            Route::put('/{plan}', [
+                'as' => 'api.admin.plan.update',
+                'uses' => 'PlanController@update',
+            ]);
+
+            Route::delete('/{plan}', [
+                'as' => 'api.admin.plan.delete',
+                'uses' => 'PlanController@destroy',
+            ]);
+
+            Route::post('/{plan}/permissions', [
+                'as' => 'api.admin.plan.permissions',
+                'uses' => 'PlanController@permissions',
+            ]);
+        });
 
         Route::get('test', 'ApplicationController@test');
     });
@@ -311,6 +337,10 @@ Route::group(['prefix' => 'manager', 'middleware' => 'api', 'guard' => 'company'
                 'uses' => 'OrderController@show',
             ]);
         });
+        Route::post('plan/{plan}', [
+            'as' => 'api.manager.plan.buy',
+            'uses' => 'PlanController@buy',
+        ]);
     });
 });
 

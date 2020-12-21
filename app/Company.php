@@ -28,6 +28,7 @@ class Company extends Authenticatable
         'password',
         'delivery_cost',
         'avatar',
+        'plan_uuid',
         'level',
         'lat',
         'lng',
@@ -61,6 +62,11 @@ class Company extends Authenticatable
     public function credential()
     {
         return $this->hasOne('App\MercadoPagoCredential', 'company_id', 'id');
+    }
+
+    public function plan()
+    {
+        return $this->belongsTo('App\Plan', 'plan_uuid');
     }
 
     public function products()
