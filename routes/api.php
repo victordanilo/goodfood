@@ -116,7 +116,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'api', 'guard' => 'admin'], f
                 'uses' => 'UserController@destroy',
             ]);
 
-            Route::post('/{user}/setrole', [
+            Route::post('/{user}/set-role', [
                 'as' => 'api.admin.user.set_role',
                 'uses' => 'UserController@setRole',
                 'middleware' => 'role:admin',
