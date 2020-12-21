@@ -69,4 +69,9 @@ class Customer extends Authenticatable
     {
         return $this->hasMany('App\FavoriteProduct', 'customer_id', 'id');
     }
+
+    public function reviewCompanies()
+    {
+        return $this->hasMany('App\CompanyReview', 'customer_uuid', 'uuid');
+    }
 }

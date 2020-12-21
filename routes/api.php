@@ -337,6 +337,10 @@ Route::group(['prefix' => 'manager', 'middleware' => 'api', 'guard' => 'company'
                 'uses' => 'OrderController@show',
             ]);
         });
+        Route::get('review', [
+            'as' => 'api.manager.review',
+            'uses' => 'CompanyReviewController@indexCompany',
+        ]);
         Route::post('plan/{plan}', [
             'as' => 'api.manager.plan.buy',
             'uses' => 'PlanController@buy',
@@ -405,6 +409,29 @@ Route::group(['middleware' => 'api', 'guard' => 'customer'], function () {
                 'as' => 'api.order.show',
                 'uses' => 'OrderController@show',
             ]);
+        });
+        Route::group(['prefix' => 'review'], function () {
+            Route::group(['prefix' => 'company'], function () {
+                Route::get('/', [
+                    'as' => 'api.review.company.list',
+                    'uses' => 'CompanyReviewController@indexCustomer',
+                ]);
+
+                Route::post('/', [
+                    'as' => 'api.review.company.add',
+                    'uses' => 'CompanyReviewController@store',
+                ]);
+
+                Route::put('/{review}', [
+                    'as' => 'api.review.company.update',
+                    'uses'=> 'CompanyReviewController@update',
+                ]);
+
+                Route::delete('/{review}', [
+                    'as' => 'api.review.company.delete',
+                    'uses' => 'CompanyReviewController@destroy',
+                ]);
+            });
         });
         Route::group(['prefix' => 'favorite'], function () {
             Route::group(['prefix' => 'company'], function () {
