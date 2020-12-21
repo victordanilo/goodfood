@@ -67,4 +67,9 @@ class Company extends Authenticatable
     {
         return $this->hasMany('App\Product', 'company_uuid', 'uuid');
     }
+
+    public function orders()
+    {
+        return $this->hasMany('App\Order', 'company_uuid', 'uuid');
+    }
 }

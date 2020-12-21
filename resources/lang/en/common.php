@@ -24,8 +24,19 @@ return [
     'removed_success' => 'removed successfully!',
     'removed_fail' => 'failed to be removed!',
 
+    'product_process_success' => 'Products successfully processed!',
+    'product_process_fail' => 'Failed to process products!',
+    'product_unavailable' => 'The product :product is no longer available',
+
+    'order_process_success' => 'Order successfully processed!',
+    'order_process_fail' => 'Failed to process order!',
+
+    'plan_signed_success' => 'Plan successfully signed!',
+
     'created_credential_success' => 'Credential successfully created!',
     'created_credential_fail' => 'Failed to create credential!',
     'access_token_not_defined' => 'Credentials have not been defined!',
     'seller_without_credential' => 'Seller is without credentials',
+
+    'payment_method_failed' => 'Failed to payment method!',
 ];

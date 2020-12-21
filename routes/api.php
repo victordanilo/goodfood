@@ -224,6 +224,24 @@ Route::group(['prefix' => 'admin', 'middleware' => 'api', 'guard' => 'admin'], f
                 ]);
             });
         });
+        Route::group(['prefix' => 'order'], function () {
+            Route::get('/', [
+                'as' => 'api.admin.order.list',
+                'uses' => 'OrderController@indexAdmin',
+            ]);
+
+            Route::get('/{order}', [
+                'as' => 'api.admin.order.show',
+                'uses' => 'OrderController@show',
+            ]);
+
+            Route::delete('/{order}', [
+                'as' => 'api.admin.order.delete',
+                'uses' => 'OrderController@destroy',
+            ]);
+        });
+
+        Route::get('test', 'ApplicationController@test');
     });
 });
 
@@ -282,6 +300,17 @@ Route::group(['prefix' => 'manager', 'middleware' => 'api', 'guard' => 'company'
                 'uses' => 'ProductCategoryController@index',
             ]);
         });
+        Route::group(['prefix' => 'order'], function () {
+            Route::get('/', [
+                'as' => 'api.manager.order.list',
+                'uses' => 'OrderController@index',
+            ]);
+
+            Route::get('/{order}', [
+                'as' => 'api.manager.order.show',
+                'uses' => 'OrderController@show',
+            ]);
+        });
     });
 });
 
@@ -331,6 +360,22 @@ Route::group(['middleware' => 'api', 'guard' => 'customer'], function () {
                 ]);
             });
         });
+        Route::group(['prefix' => 'order'], function () {
+            Route::get('/', [
+                'as' => 'api.order.list',
+                'uses' => 'OrderController@index',
+            ]);
+
+            Route::post('/', [
+                'as' => 'api.order.add',
+                'uses' => 'OrderController@store',
+            ]);
+
+            Route::get('/{order}', [
+                'as' => 'api.order.show',
+                'uses' => 'OrderController@show',
+            ]);
+        });
     });
 
     Route::group(['prefix' => 'product'], function () {
@@ -344,4 +389,9 @@ Route::group(['middleware' => 'api', 'guard' => 'customer'], function () {
             'uses' => 'ProductCategoryController@index',
         ]);
     });
+
+    Route::post('/calculate-delivery', [
+        'as' => 'api.delivery.calculate',
+        'uses' => 'OrderController@previewDeliveryPrice',
+    ]);
 });
