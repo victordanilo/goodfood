@@ -512,4 +512,9 @@ Route::group(['middleware' => 'api', 'guard' => 'customer'], function () {
         'as' => 'api.delivery.calculate',
         'uses' => 'OrderController@previewDeliveryPrice',
     ]);
+
+    Route::post('/validate-recaptcha', [
+        'as' => 'api.recaptcha.validate',
+        'uses' => 'RecaptchaController@validateRecaptcha',
+    ]);
 });
