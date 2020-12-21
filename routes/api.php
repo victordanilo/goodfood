@@ -325,6 +325,11 @@ Route::group(['prefix' => 'manager', 'middleware' => 'api', 'guard' => 'company'
                 'as' => 'api.manager.product.category',
                 'uses' => 'ProductCategoryController@index',
             ]);
+
+            Route::get('/reviews', [
+                'as' => 'api.manager.product.review',
+                'uses' => 'ProductReviewController@indexProduct',
+            ]);
         });
         Route::group(['prefix' => 'order'], function () {
             Route::get('/', [
@@ -430,6 +435,28 @@ Route::group(['middleware' => 'api', 'guard' => 'customer'], function () {
                 Route::delete('/{review}', [
                     'as' => 'api.review.company.delete',
                     'uses' => 'CompanyReviewController@destroy',
+                ]);
+            });
+
+            Route::group(['prefix' => 'product'], function () {
+                Route::get('/', [
+                    'as' => 'api.review.product.list',
+                    'uses' => 'ProductReviewController@indexCustomer',
+                ]);
+
+                Route::post('/', [
+                    'as' => 'api.review.product.add',
+                    'uses' => 'ProductReviewController@store',
+                ]);
+
+                Route::put('/{review}', [
+                    'as' => 'api.review.product.update',
+                    'uses' => 'ProductReviewController@update',
+                ]);
+
+                Route::delete('/{review}', [
+                    'as' => 'api.review.product.delete',
+                    'uses' => 'ProductReviewController@destroy',
                 ]);
             });
         });

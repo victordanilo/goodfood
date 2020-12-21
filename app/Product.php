@@ -57,4 +57,9 @@ class Product extends Model
     {
         return $this->belongsTo('App\ProductCategory', 'category_uuid', 'uuid');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany('App\ProductReview', 'product_uuid', 'uuid');
+    }
 }
