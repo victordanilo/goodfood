@@ -59,4 +59,14 @@ class Customer extends Authenticatable
     {
         return $this->hasMany('App\Order', 'customer_uuid', 'uuid');
     }
+
+    public function favoriteCompanies()
+    {
+        return $this->hasMany('App\FavoriteCompany', 'customer_id', 'id');
+    }
+
+    public function favoriteProducts()
+    {
+        return $this->hasMany('App\FavoriteProduct', 'customer_id', 'id');
+    }
 }

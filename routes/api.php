@@ -406,6 +406,40 @@ Route::group(['middleware' => 'api', 'guard' => 'customer'], function () {
                 'uses' => 'OrderController@show',
             ]);
         });
+        Route::group(['prefix' => 'favorite'], function () {
+            Route::group(['prefix' => 'company'], function () {
+                Route::get('/', [
+                    'as' => 'api.favorite.company.list',
+                    'uses' => 'FavoriteCompanyController@index',
+                ]);
+
+                Route::post('/', [
+                    'as' => 'api.favorite.company.add',
+                    'uses' => 'FavoriteCompanyController@store',
+                ]);
+
+                Route::delete('/{company}', [
+                    'as' => 'api.favorite.company.remove',
+                    'uses' => 'FavoriteCompanyController@destroy',
+                ]);
+            });
+            Route::group(['prefix' => 'product'], function () {
+                Route::get('/', [
+                    'as' => 'api.favorite.product.list',
+                    'uses' => 'FavoriteProductController@index',
+                ]);
+
+                Route::post('/', [
+                    'as' => 'api.favorite.product.add',
+                    'uses' => 'FavoriteProductController@store',
+                ]);
+
+                Route::delete('/{product}', [
+                    'as' => 'api.favorite.product.remove',
+                    'uses' => 'FavoriteProductController@destroy',
+                ]);
+            });
+        });
     });
 
     Route::group(['prefix' => 'product'], function () {
