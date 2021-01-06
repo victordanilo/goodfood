@@ -232,7 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'GoogleMaps' => GoogleMaps\Facade\GoogleMapsFacade::class,
         'GoogleReCaptchaV3'=> TimeHunter\LaravelGoogleReCaptchaV3\Facades\GoogleReCaptchaV3::class,
-
+        'Setting' => Akaunting\Setting\Facade::class,
     ],
 
 ];

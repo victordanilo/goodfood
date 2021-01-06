@@ -89,6 +89,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'api', 'guard' => 'admin'], f
                 'uses' => 'PermissionController@destroy',
             ]);
         });
+        Route::group(['prefix' => 'setting'], function () {
+            Route::get('/', [
+                'as' => 'api.admin.setting.list',
+                'uses' => 'SettingController@index',
+            ]);
+
+            Route::post('/', [
+                'as' => 'api.admin.setting.set',
+                'uses' => 'SettingController@set',
+            ]);
+        });
         Route::group(['prefix' => 'user'], function () {
             Route::get('/', [
                 'as' => 'api.admin.user.list',
