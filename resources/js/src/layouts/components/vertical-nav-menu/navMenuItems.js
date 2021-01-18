@@ -20,6 +20,28 @@
 
 
 export default [
+  // manager
+  {
+    url: '/manager',
+    name: 'dashboard',
+    icon: 'HomeIcon',
+    i18n: 'dashboard'
+  },
+  {
+    url: '/manager/product',
+    name: 'product',
+    slug: 'manager-products',
+    icon: 'ShoppingBagIcon',
+    i18n: 'product'
+  },
+  {
+    url: '/manager/order',
+    name: 'order',
+    slug: 'manager-orders',
+    icon: 'FileTextIcon',
+    i18n: 'order'
+  },
+
   // admin
   {
     url: '/admin',
