@@ -102,7 +102,7 @@ const actions = {
       uuid        : null,
       name        : '',
       email       : '',
-      profile_img : '',
+      avatar      : '',
       userRole    : 'public'
     })
     commit('UPDATE_USER_ADDRESS', [])

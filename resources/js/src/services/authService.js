@@ -25,7 +25,7 @@ class AuthService extends EventEmitter {
       uid: this.profile.sub,
       name: this.profile.name,
       email: this.profile.email,
-      profile_img: this.profile.picture
+      avatar: this.profile.picture
     })
 
     this.emit(loginEvent, {

@@ -19,4 +19,61 @@
 ==========================================================================================*/
 
 
-export default []
+export default [
+  // admin
+  {
+    url: '/admin',
+    name: 'dashboard',
+    icon: 'HomeIcon',
+    i18n: 'dashboard'
+  },
+  {
+    url: '/admin/order',
+    name: 'order',
+    icon: 'FileTextIcon',
+    slug: 'admin-orders',
+    i18n: 'order'
+  },
+  {
+    url: '/admin/product/category',
+    name: 'product-category',
+    icon: 'TagIcon',
+    slug: 'admin-product-categories',
+    i18n: 'categories'
+  },
+  {
+    url: '/admin/customer',
+    name: 'customer',
+    icon: 'SmileIcon',
+    slug: 'admin-customers',
+    i18n: 'customer'
+  },
+  {
+    url: '/admin/company',
+    name: 'company',
+    icon: 'UsersIcon',
+    slug: 'admin-companies',
+    i18n: 'company'
+  },
+  {
+    url: '/admin/user',
+    name: 'user',
+    icon: 'UserIcon',
+    slug: 'admin-users',
+    i18n: 'user'
+  },
+  {
+    url: '/admin/role',
+    name: 'role',
+    icon: 'ShieldIcon',
+    slug: 'admin-roles',
+    i18n: 'role'
+  },
+  {
+    url: '/admin/settings',
+    name: 'settings',
+    icon: 'SettingsIcon',
+    slug: 'admin-settings',
+    i18n: 'settings'
+  }
+]

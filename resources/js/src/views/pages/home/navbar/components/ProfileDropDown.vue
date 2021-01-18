@@ -56,8 +56,8 @@ export default {
     avatar () {
       let img = require('@assets/images/profile/default-user.jpg')
 
-      if (this.activeUserInfo.profile_img) {
-        img = helpers.assets(`storage/customer/profile_img/${this.activeUserInfo.profile_img}`)
+      if (this.activeUserInfo.avatar) {
+        img = helpers.assets(`storage/customer/avatar/${this.activeUserInfo.avatar}`)
       }
 
       return img

@@ -99,7 +99,7 @@ const mutations = {
     const userInfo = JSON.parse(localStorage.getItem('userInfo')) || state.userInfo
 
     for (const property of Object.keys(payload)) {
-      if (property === 'profile_img' && payload[property] === null) payload[property] = ''
+      if (property === 'avatar' && payload[property] === null) payload[property] = ''
 
       // If some of user property is null - user default property defined in state.userInfo
       state.userInfo[property] = payload[property]
