@@ -30,6 +30,7 @@
     <script src="{{ asset(mix('js/app.js')) }}"></script>
     <script>
         window.baseUrl = {!! json_encode(url('/')) !!};
+        window.reCaptcha_public_key = "{{ config('googlerecaptchav3.site_key') }}";
     </script>
 </body>
 </html>

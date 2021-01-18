@@ -48,8 +48,8 @@ export default {
       let scope = this.activeUserInfo.userRole
       if (scope === 'admin') scope = 'user'
 
-      if (this.activeUserInfo.profile_img) {
-        img = helpers.assets(`storage/${scope}/profile_img/${this.activeUserInfo.profile_img}`)
+      if (this.activeUserInfo.avatar) {
+        img = helpers.assets(`storage/${scope}/avatar/${this.activeUserInfo.avatar}`)
       }
 
       return img

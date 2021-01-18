@@ -19,7 +19,7 @@ const userDefaults = {
   uuid        : null,
   name        : '',
   email       : '',
-  profile_img : '',
+  avatar      : '',
   userRole    : 'public'
 }
 
