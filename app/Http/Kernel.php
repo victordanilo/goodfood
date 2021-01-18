@@ -41,7 +41,8 @@ class Kernel extends HttpKernel
 
         'api' => [
             'throttle:60,1',
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            'guardswitch',
+            'bindings',
         ],
     ];
 
@@ -63,5 +64,13 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'guardswitch' => \App\Http\Middleware\GuardSwitcher::class,
+        'scope.validate' => \App\Http\Middleware\ScopeValidate::class,
+        'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+        'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+        'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
+        'load_profile_user' => \App\Http\Middleware\InjectCurrentProfileUser::class,
+        'load_profile_company' => \App\Http\Middleware\InjectCurrentProfileCompany::class,
+        'load_profile_customer' => \App\Http\Middleware\InjectCurrentProfileCustomer::class,
     ];
 }

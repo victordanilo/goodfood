@@ -2,8 +2,12 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Auth\Access\AuthorizationException;
+use Spatie\Permission\Exceptions\UnauthorizedException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -50,6 +54,18 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($exception instanceof NotFoundHttpException) {
+            return response()->json(['message' => trans('common.endpoint_not_found')], 404);
+        }
+
+        if ($exception instanceof ModelNotFoundException) {
+            return response()->json(['message' => trans('common.register_not_found')], 404);
+        }
+
+        if ($exception instanceof UnauthorizedException || $exception instanceof AuthorizationException) {
+            return response()->json(['message' => __('common.user_without_permission')], 403);
+        }
+
         return parent::render($request, $exception);
     }
 }

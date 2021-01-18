@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class PreviewDeliveryPriceRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'products' => 'required',
+            'products.*.uuid' => 'required|uuid|exists:products,uuid',
+            'products.*.qty' => 'required|integer',
+            'delivery_address' => 'required|max:255',
+        ];
+    }
+}
