@@ -48,6 +48,160 @@ const router = new Router({
     },
 
     // =============================================================================
+    // MANAGER
+    // =============================================================================
+    {
+      path: '',
+      component: () => import('@/layouts/full-page/FullPage.vue'),
+      meta:{
+        redirectLogin: 'manager-login'
+      },
+      children: [
+        {
+          path: '/manager/auth/login',
+          name: 'manager-login',
+          component: () => import('@/views/manager/auth/login/Login.vue'),
+          meta: {
+            rule: 'public'
+          }
+        },
+        {
+          path: '/manager/auth/register',
+          name: 'manager-register',
+          component: () => import('@/views/manager/auth/register/Register.vue'),
+          meta: {
+            rule: 'public'
+          }
+        },
+        {
+          path: '/manager/auth/forgot-password',
+          name: 'manager-forgot-password',
+          component: () => import('@/views/manager/auth/ForgotPassword.vue'),
+          meta: {
+            rule: 'public'
+          }
+        }
+      ]
+    },
+    {
+      path: '',
+      component: () => import('@/layouts/main/Main.vue'),
+      meta:{
+        redirectLogin: 'manager-login'
+      },
+      children: [
+        {
+          path: '/manager',
+          name: 'manager-dashboard',
+          component: () => import('@/views/manager/Dashboard.vue'),
+          meta: {
+            rule: 'company'
+          }
+        },
+
+        // products
+        {
+          path: '/manager/product',
+          name: 'manager-products',
+          component: () => import('@/views/manager/product/product-list/ProductList.vue'),
+          meta: {
+            breadcrumb: [
+              { title: 'manager', url: '/' },
+              { title: 'list', active: true }
+            ],
+            pageTitle: 'products',
+            rule: 'company'
+          }
+        },
+        {
+          path: '/manager/product/product-create',
+          name: 'manager-product-create',
+          component: () => import('@/views/manager/product/ProductCreate.vue'),
+          meta: {
+            breadcrumb: [
+              { title: 'manager', url: '/' },
+              { title: 'list', url: '/manager/product'},
+              { title: 'create_product', active: true }
+            ],
+            parent: 'manager-products',
+            pageTitle: 'products',
+            rule: 'company'
+          }
+        },
+        {
+          path: '/manager/product/product-view/:productUUID',
+          name: 'manager-product-view',
+          component: () => import('@/views/manager/product/ProductView.vue'),
+          meta: {
+            breadcrumb: [
+              { title: 'manager', url: '/' },
+              { title: 'list', url: '/manager/product'},
+              { title: 'view', active: true }
+            ],
+            parent: 'manager-products',
+            pageTitle: 'products',
+            rule: 'company'
+          }
+        },
+        {
+          path: '/manager/product/product-edit/:productUUID',
+          name: 'manager-product-edit',
+          component: () => import('@/views/manager/product/ProductEdit.vue'),
+          meta: {
+            breadcrumb: [
+              { title: 'manager', url: '/' },
+              { title: 'list', url: '/manager/product'},
+              { title: 'edit_product', active: true }
+            ],
+            parent: 'manager-products',
+            pageTitle: 'products',
+            rule: 'company'
+          }
+        },
+
+        // orders
+        {
+          path: '/manager/order',
+          name: 'manager-orders',
+          component: () => import('@/views/manager/order/order-list/OrderList.vue'),
+          meta: {
+            breadcrumb: [
+              { title: 'manager', url: '/' },
+              { title: 'list', active: true }
+            ],
+            pageTitle: 'orders',
+            rule: 'company'
+          }
+        },
+        {
+          path: '/manager/order/order-view/:orderUUID',
+          name: 'manager-order-view',
+          component: () => import('@/views/manager/order/OrderView.vue'),
+          meta: {
+            breadcrumb: [
+              { title: 'manager', url: '/' },
+              { title: 'list', url: '/manager/order'},
+              { title: 'view', active: true }
+            ],
+            parent: 'manager-orders',
+            pageTitle: 'orders',
+            rule: 'company'
+          }
+        },
+
+        // profile
+        {
+          path: '/manager/profile',
+          name: 'manager-profile',
+          component: () => import('@/views/manager/profile/ProfileEdit.vue'),
+          meta: {
+            rule: 'company'
+          }
+        }
+      ]
+    },
+
+    // =============================================================================
     // ADMIN
     // =============================================================================
     {

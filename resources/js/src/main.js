@@ -52,6 +52,10 @@ Vue.use(VueClipboard)
 import VeeValidate from 'vee-validate'
 Vue.use(VeeValidate)
 
+// VueMask
+import VueTheMask from './directives/mask'
+Vue.use(VueTheMask)
+
 // Vuejs - Vue wrapper for hammerjs
 import { VueHammer } from 'vue2-hammer'
 Vue.use(VueHammer)
