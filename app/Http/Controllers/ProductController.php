@@ -5,11 +5,32 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Product;
 use App\Helpers\Upload;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 
 class ProductController extends Controller
 {
+    /**
+     * Search from algolia.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function search(Request $request)
+    {
+        $request->validate([
+            'q' => 'required',
+        ]);
+
+        $products = Product::search($request->get('q'))->raw();
+        if (empty($products['hits'])) {
+            $products['hits'] = [];
+        }
+
+        return response()->json(['data' => $products['hits']]);
+    }
+
     /**
      * Retorna produtos nos endpoit customer e admin.
      *
