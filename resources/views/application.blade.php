@@ -31,6 +31,9 @@
     <script>
         window.baseUrl = {!! json_encode(url('/')) !!};
         window.reCaptcha_public_key = "{{ config('googlerecaptchav3.site_key') }}";
+        window.mp_public_key = "{{ config('mp.public_key') }}";
+        window.algolia_id = "{{ config('scout.algolia.id') }}";
+        window.algolia_key = "{{ config('scout.algolia.public') }}";
     </script>
 </body>
 </html>
