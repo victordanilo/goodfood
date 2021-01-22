@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+
 class ApplicationController extends Controller
 {
-    public function index()
+    public function __invoke()
     {
-        return view('welcome');
+        return view('application');
     }
 }

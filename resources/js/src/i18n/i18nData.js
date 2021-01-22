@@ -1,0 +1,212 @@
+// pt
+export default {
+  pt: {
+    auth: {
+      btn_login: 'Login',
+      btn_register: 'Registrar',
+      btn_remember_me: 'Lembrar-me',
+      btn_forget_password: 'Esqueceu sua senha?',
+      login: {
+        title: 'Login',
+        description: 'Bem-vindo ao GoodFood',
+        notify: {
+          is_logged: 'Você já está logado!',
+          fail: 'E-mail ou senha incorretos'
+        }
+      },
+      register: {
+        title: 'Criar Conta',
+        description: 'Bem-vindo ao GoodFood',
+        terms_conditions: 'Eu aceito os termos e condições'
+      },
+      forget_password: {
+        title: 'Recupere sua senha',
+        description: 'Insira seu endereço de e-mail e enviaremos instruções sobre como redefinir sua senha.',
+        btn_back_to_login: 'Volte ao login',
+        btn_recover_password: 'Recuperar senha'
+      }
+    },
+
+    // generics
+    dashboard: 'Dashboard',
+    manager: 'Manager',
+    module: 'Modulo',
+    general: 'Geral',
+    login: 'Logar-se',
+    register: 'Cadastrar-se',
+    profile: 'Perfil',
+    search: 'Pesquisar',
+    back: 'Voltar',
+    list: 'Lista',
+    view: 'Ver',
+    add: 'Adicionar',
+    save: 'Salvar',
+    save_changes: 'Salvar alterações',
+    read: 'Visualizar',
+    create: 'Criar',
+    edit: 'Editar',
+    delete: 'Excluir',
+    remove: 'Remover',
+    reset: 'Redefinir',
+    confirm: 'Confirmar',
+    cancel: 'Cancelar',
+    check: 'Verificar',
+    status: 'Status',
+    active: 'Ativo',
+    deactivated: 'Desativado',
+    action: 'Ação',
+    actions: 'Ações',
+    upload_avatar: 'Upload Foto',
+    change_avatar: 'Trocar Foto',
+    remove_avatar: 'Remover Foto',
+    upload_img: 'Upload Imagem',
+    remove_img: 'Remover Imagem',
+    loading: 'Carregando',
+    reset_filters: 'Limpar Filtros',
+    of: 'de',
+    special: 'Especiais',
+    month: 'Mês',
+    year: 'Ano',
+    this_month: 'Este mês',
+    last_month: 'Últimos Meses',
+    received: 'Recebido',
+    revenues: 'Faturamento',
+    application_fee: 'Taxa do Aplicativo',
+    money_release_days: 'Dias de liberação de dinheiro',
+    statement_descriptor: 'Título do emissor de Cobrança',
+    payment: 'Pagamento',
+    subscribers: 'Inscritos',
+    available: 'Disponível',
+    go_home: 'Ir para Home',
+    notifications: 'Notificações',
+    view_all_notifications: 'Ver todas notificações',
+    setting: 'Configuração',
+    settings: 'Configurações',
+
+    mail_host: 'Host',
+    mail_encryption: 'Criptografia',
+    mail_port: 'Port',
+    mail_username: 'Usuário',
+    mail_password: 'Senha',
+    mail_from_address: 'Email de remetente',
+    mail_from_name: 'Nome de remetente',
+
+    customer: 'Cliente',
+    customers: 'Clientes',
+    all_customers: 'Todos os Clientes',
+    create_customer: 'Criar Cliente',
+
+    company: 'Restaurante',
+    companies: 'Restaurantes',
+    all_companies: 'Todos os Restaurantes ',
+    create_company: 'Criar Restaurante',
+
+    user: 'Usuário',
+    users: 'Usuários',
+    all_users: 'Todos os Usuários',
+    create_user: 'Criar Usuário',
+
+    all_roles: 'Todas as Funçoes',
+    role: 'Função',
+    roles: 'Funções',
+    add_role: 'Add Função',
+    edit_role: 'Editar Função',
+    permissions: 'Permissões',
+    set_role: 'Definir Função de usuário',
+
+    account: 'Conta',
+    name: 'Nome',
+    trade: 'Razão Social',
+    owner: 'Proprietário',
+    phone: 'Telefone',
+    password: 'Senha',
+    password_confirm: 'Confirmar Senha',
+    address: 'Endereço',
+    street: 'Rua',
+    complement: 'Complemento',
+    district: 'Bairro',
+    zip_code: 'CEP',
+    city: 'Cidade',
+    uf: 'UF',
+
+    product: 'Produto',
+    products: 'Produtos',
+    all_products: 'Todos os Produtos',
+    create_product: 'Criar Produto',
+    edit_product: 'Editar Produto',
+    product_description: 'Descrição do Produto',
+    product_category: 'Categoria de Produto',
+    product_categories: 'Categorias de Produtos',
+
+    category: 'Categoria',
+    categories: 'Categorias',
+    add_category: 'Adicionar Categoria',
+    edit_category: 'Editar Categoria',
+
+    order: 'Pedido',
+    orders: 'Pedidos',
+    all_orders: 'Todos os Pedidos',
+    items: 'Itens',
+    place_order: 'Confirmar Pedido',
+    price_details: 'Detalhes de preço',
+
+    description: 'Descrição',
+    quantity: 'Quantidade',
+    qty: 'Qty',
+    price: 'Preço',
+    amount: 'Total',
+    obs: 'Obs',
+    stock: 'Estoque',
+    in_stock: 'Em Estoque',
+
+    cart: 'Carrinho',
+    add_to_cart: 'Adicionar ao Carrinho',
+    in_your_cart: 'Em seu Carrinho',
+    view_in_cart: 'Ver no Carrinho',
+    browse_shop: 'Ver Produtos',
+
+    delivery_price: 'Preço de entrega',
+    delivery_address:'Endereço de entrega',
+
+    // card
+    card_holder_name: 'Titular do Cartão',
+    card_number: 'Numero do Cartão',
+    card_cvv: 'Código de segurança',
+    card_doc_type: 'Tipo de documento',
+    card_doc_number: 'Número do documento',
+
+    record_not_found: '%{record} não encontrado',
+    order_not_found: 'Pedido não encontrado',
+    customer_not_found: 'Cliente não encontrado',
+    company_not_found: 'Restaurante não encontrado',
+    user_not_found: 'Usuário não encontrado',
+
+    // notifications
+    notify_customer_not_found: 'Registro de cliente com %{prop}: %{value} não encontrado.',
+    notify_company_not_found: 'Registro de restaurante com %{prop}: %{value} não encontrado.',
+    notify_user_not_found: 'Registro de usuário com %{prop}: %{value} não encontrado.',
+    notify_order_not_found: 'Registro de pedido com %{prop}: %{value} não encontrado.',
+    notify_register_not_found: 'Registro de %{record} com %{prop}: %{value} não encontrado.',
+    notiy_cart_empty: 'Você não tem itens no seu carrinho.',
+    notify_your_cart_is_empty: 'Seu carrinho está vazio.',
+    notify_fail_validate_card: 'Ocorreu uma falha ao validar seu cartão!',
+    notify_fail_load_profile: 'Falha ao carregar o perfil',
+    notify_checkout_auth_required: {
+      title: 'Usuário não autenticado',
+      text: 'você precisa fazer o login para prosseguir com o checkout!'
+    },
+    notify_fail_save_category_already_exists: 'Falha ao salvar, já existe uma categoria com esse nome',
+    notify_fail_save_role_already_exists: 'Falha ao salvar, já existe uma função com esse nome',
+    notify_password_no_match: 'Password doesn\'t match. Please try again.',
+    notify_validate_recaptcha: 'Erro na validação do ReCaptcha',
+    delete_confirm: {
+      title: 'Confirmar exclusão',
+      text: 'Você está prestes a deletar %{username}'
+    },
+
+    // errors
+    error: 'Error',
+    404: '404',
+    500: '500'
+  }
+}
