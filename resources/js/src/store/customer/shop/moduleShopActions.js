@@ -19,7 +19,7 @@ export default {
   },
   calculateDelivery ({ commit }, cartData) {
     return new Promise((resolve, reject) => {
-      axios.post('/api/deliveryprice', cartData)
+      axios.post('/api/calculate-delivery', cartData)
         .then((response) => {
           commit('SET_DELIVERY_PRICE', response.data.delivery_price)
           resolve(response)
