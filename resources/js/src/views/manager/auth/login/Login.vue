@@ -45,7 +45,9 @@ export default {
 </script>
 
 <style lang="scss">
-.login-tabs-container {
-  min-height: 505px;
-}
+  p.description {
+    font-family: "visby-round";
+    font-size: 1rem;
+    text-align: center;
+  }
 </style>
