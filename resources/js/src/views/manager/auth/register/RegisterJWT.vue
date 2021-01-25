@@ -35,7 +35,7 @@ Author URL: http://www.themeforest.net/user/pixinvent
       ref="password"
       type="password"
       data-vv-validate-on="blur"
-      v-validate="'required|min:6|max:10'"
+      v-validate="'required|min:6|max:20'"
       name="password"
       label-placeholder="Password"
       placeholder="Password"
@@ -45,7 +45,7 @@ Author URL: http://www.themeforest.net/user/pixinvent
 
     <vs-input
       type="password"
-      v-validate="'min:6|max:10|confirmed:password'"
+      v-validate="'min:6|max:20|confirmed:password'"
       data-vv-validate-on="blur"
       data-vv-as="password"
       name="confirm_password"
