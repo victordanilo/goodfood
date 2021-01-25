@@ -2,13 +2,14 @@
 
 namespace App;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use YourAppRocks\EloquentUuid\Traits\HasUuid;
 
 class Product extends Model
 {
-    use HasUuid, SoftDeletes;
+    use HasUuid, SoftDeletes, Searchable;
 
     protected $primaryKey = 'uuid';
     protected $keyType = 'string';
@@ -61,5 +62,20 @@ class Product extends Model
     public function reviews()
     {
         return $this->hasMany('App\ProductReview', 'product_uuid', 'uuid');
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        $extraFields = [
+            'category' => $this->category,
+        ];
+
+        return array_merge($array, $extraFields);
     }
 }

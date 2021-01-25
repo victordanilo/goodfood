@@ -43,6 +43,71 @@ const router = new Router({
           meta: {
             rule: 'public'
           }
+        },
+        {
+          path: '/checkout',
+          name: 'checkout',
+          component: () => import('@/views/pages/home/shop/Checkout.vue'),
+          meta: {
+            rule: 'public'
+          }
+        },
+        {
+          path: '/order',
+          name: 'orders',
+          component: () => import('@/views/pages/home/order/order-list/OrderList.vue'),
+          meta: {
+            rule: 'customer'
+          }
+        },
+        {
+          path: '/order/order-view/:orderUUID',
+          name: 'order-view',
+          component: () => import('@/views/pages/home/order/OrderView.vue'),
+          meta: {
+            rule: 'customer'
+          }
+        },
+        {
+          path: '/profile',
+          name: 'profile',
+          component: () => import('@/views/pages/home/profile/ProfileEdit.vue'),
+          meta: {
+            rule: 'customer'
+          }
+        }
+      ]
+    },
+    {
+      path: '',
+      component: () => import('@/layouts/full-page/FullPage.vue'),
+      meta:{
+        redirectLogin: 'home'
+      },
+      children: [
+        {
+          path: '/auth/login',
+          name: 'login',
+          component: () => import('@/views/pages/auth/login/Login.vue'),
+          meta: {
+            rule: 'public'
+          }
+        },
+        {
+          path: '/auth/register',
+          name: 'register',
+          component: () => import('@/views/pages/auth/register/Register.vue'),
+          meta: {
+            rule: 'public'
+          }
+        },
+        {
+          path: '/auth/forgot-password',
+          name: 'forgot-password',
+          component: () => import('@/views/pages/auth/ForgotPassword.vue'),
+          meta: {
+            rule: 'public'
+          }
         }
       ]
     },
