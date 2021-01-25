@@ -106,7 +106,7 @@ class ProductController extends Controller
 
         $datas = $request->validated();
         if (! empty($request->file('image'))) {
-            $datas['image'] = Upload::profileImg($request->file('image'), 'product/');
+            $datas['image'] = Upload::img($request->file('image'), 'product/');
         }
 
         if ($product->update($datas)) {
