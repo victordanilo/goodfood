@@ -33,11 +33,14 @@
               <vs-input class="w-full mt-4" :label="$t('trade')" v-model="company_data.trade" v-validate="'min:3|max:255'" name="trade"/>
               <span class="text-danger text-sm" v-show="errors.has('trade')">{{ errors.first('trade') }}</span>
 
-              <the-mask class="w-full mt-4" label="CNPJ/CPF" v-model="company_data.cpf_cnpj" :mask="['###.###.###-##', '##.###.###/####-##']" name="cpf_cnpj" />
+              <vs-input class="w-full mt-4" label="CNPJ/CPF" v-model="company_data.cpf_cnpj" v-mask="['###.###.###-##', '##.###.###/####-##']" name="cpf_cnpj"/>
               <span class="text-danger text-sm" v-show="errors.has('cpf_cnpj')">{{ errors.first('cpf_cnpj') }}</span>
 
               <vs-input class="w-full mt-4" :label="$t('owner')" v-model="company_data.owner" v-validate="'min:3|max:255'" name="owner"/>
               <span class="text-danger text-sm" v-show="errors.has('owner')">{{ errors.first('owner') }}</span>
+
+              <vs-input class="w-full mt-4" :label="$t('delivery_cost')" :value="delivery_cost_local" v-money="mask.money" @focus="startPrice" @change="changePrice" name="delivery_cost"/>
+              <span class="text-danger text-sm" v-show="errors.has('delivery_cost')">{{ errors.first('delivery_cost') }}</span>
             </div>
           </div>
           <div class="vx-col w-full md:w-1/2">
@@ -119,10 +122,15 @@
 <script>
 import _ from 'lodash'
 import vSelect from 'vue-select'
+import { VMoney } from 'v-money'
 import {createPopper} from '@popperjs/core'
+import { format, unformat } from '@/utils/vMoney'
 import moduleCompanyManagement from '@/store/admin/company-management/moduleCompanyManagement'
 
 export default {
+  directives: {
+    money: VMoney
+  },
   components: {
     vSelect
   },
@@ -133,6 +141,7 @@ export default {
         trade: '',
         cpf_cnpj: '',
         owner: '',
+        delivery_cost: '0.00',
         email: '',
         phone: '',
         avatar: '',
@@ -147,6 +156,18 @@ export default {
         uf: ''
       },
       avatar_preview: null,
+      delivery_cost_local: '0.00',
+      mask: {
+        money: {
+          prefix: 'R$ ',
+          suffix: '',
+          decimal: ',',
+          thousands: '.',
+          precision: 2,
+          masked: false
+        },
+        money_start: false
+      },
 
       ufOptions: [
         { label: 'AC', value: 'AC' },
@@ -183,14 +204,6 @@ export default {
     validateForm () {
       return !this.errors.any()
     },
-    uf_local: {
-      get () {
-        return {label: _.toUpper(this.company_data.uf), value: this.company_data.uf}
-      },
-      set (uf) {
-        this.company_data.uf = uf.value
-      }
-    },
     srcAvatar () {
       let img = require('@assets/images/profile/default-user.jpg')
 
@@ -199,9 +212,36 @@ export default {
       }
 
       return img
+    },
+    uf_local: {
+      get () {
+        return {label: _.toUpper(this.company_data.uf), value: this.company_data.uf}
+      },
+      set (uf) {
+        this.company_data.uf = uf.value
+      }
+    }
+  },
+  watch: {
+    'company_data.delivery_cost': {
+      immediate: true,
+      handler (newValue, oldValue) {
+        const formatted = format(newValue, this.mask.money)
+        if (formatted !== this.delivery_cost_local) {
+          this.delivery_cost_local = formatted
+        }
+      }
     }
   },
   methods: {
+    startPrice () {
+      this.mask.money_start = true
+    },
+    changePrice (evt) {
+      if (this.mask.money_start) {
+        this.company_data.delivery_cost = (unformat(evt.target.value, 2)).toFixed(2)
+      }
+    },
     calculatePosition  (dropdownList, component, {width}) {
       /**
        * We need to explicitly define the dropdown width since

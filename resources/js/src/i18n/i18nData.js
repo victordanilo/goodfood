@@ -71,6 +71,7 @@ export default {
     last_month: 'Últimos Meses',
     received: 'Recebido',
     revenues: 'Faturamento',
+    delivery_cost: 'Preço de entrega p/km',
     application_fee: 'Taxa do Aplicativo',
     money_release_days: 'Dias de liberação de dinheiro',
     statement_descriptor: 'Título do emissor de Cobrança',
