@@ -174,14 +174,6 @@ export default {
     }
   },
   computed: {
-    uf_local: {
-      get () {
-        return {label: _.toUpper(this.address_data.uf), value: this.address_data.uf}
-      },
-      set (uf) {
-        this.address_data.uf = uf.value
-      }
-    },
     validateForm () {
       return !this.errors.any()
     },
@@ -193,6 +185,14 @@ export default {
       }
 
       return img
+    },
+    uf_local: {
+      get () {
+        return {label: _.toUpper(this.address_data.uf), value: this.address_data.uf}
+      },
+      set (uf) {
+        this.address_data.uf = uf.value
+      }
     }
   },
   methods: {
