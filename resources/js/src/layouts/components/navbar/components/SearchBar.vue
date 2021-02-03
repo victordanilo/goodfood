@@ -171,7 +171,7 @@ export default {
     this.currentScope = this.get_session_scope()
 
     // Register Module CompanyManagement
-    if (!moduleProductManagement.isRegistered) {
+    if (!moduleProductManagement.isRegistered && this.currentScope === 'manager') {
       this.$store.registerModule('productManagement', moduleProductManagement)
       moduleProductManagement.isRegistered = true
       this.$store.dispatch('productManagement/fetchProducts').catch(err => console.error(err))
