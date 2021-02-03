@@ -171,9 +171,10 @@
                         <div class="vs-component vs-con-input-label vs-input w-full mt-4 vs-input-primary">
                           <label for="cardNumber" class="vs-input--label">{{ $t('card_number') }}</label>
                           <div class="vs-con-input">
-                            <input type="text" id="cardNumber" data-checkout="cardNumber" @input="setPaymentMethod" class="vs-inputx vs-input--input normal">
+                            <input type="text" name="cardNumber" id="cardNumber" data-checkout="cardNumber" @input="setPaymentMethod" v-validate="'required|size:16'" v-mask="['################']" class="vs-inputx vs-input--input normal">
                           </div>
                         </div>
+                        <span class="text-danger text-sm" v-show="errors.has('cardNumber')">{{ errors.first('cardNumber') }}</span>
                       </div>
                       <div class="vx-col w-full md:w-1/2">
                         <div class="vx-row">
@@ -182,7 +183,7 @@
                             <div class="vs-component vs-con-input-label vs-input w-full mt-4 vs-input-primary">
                               <label for="cardExpirationMonth" class="vs-input--label">{{ $t('month') }}</label>
                               <div class="vs-con-input">
-                                <input type="text" placeholder="MM" id="cardExpirationMonth" data-checkout="cardExpirationMonth" class="vs-inputx vs-input--input normal">
+                                <input type="text" placeholder="MM" id="cardExpirationMonth" data-checkout="cardExpirationMonth" v-mask="['##']" class="vs-inputx vs-input--input normal">
                               </div>
                             </div>
                           </div>
@@ -191,7 +192,7 @@
                             <div class="vs-component vs-con-input-label vs-input w-full mt-4 vs-input-primary">
                               <label for="cardExpirationYear" class="vs-input--label">{{ $t('year') }}</label>
                               <div class="vs-con-input">
-                                <input type="text" placeholder="YY" id="cardExpirationYear" data-checkout="cardExpirationYear" class="vs-inputx vs-input--input normal">
+                                <input type="text" placeholder="YY" id="cardExpirationYear" data-checkout="cardExpirationYear" v-mask="['##']" class="vs-inputx vs-input--input normal">
                               </div>
                             </div>
                           </div>
@@ -202,7 +203,7 @@
                         <div class="vs-component vs-con-input-label vs-input w-full mt-4 vs-input-primary">
                           <label for="securityCode" class="vs-input--label">{{ $t('card_cvv') }}</label>
                           <div class="vs-con-input">
-                            <input type="text" id="securityCode" data-checkout="securityCode" class="vs-inputx vs-input--input normal">
+                            <input type="text" id="securityCode" data-checkout="securityCode" v-mask="['###']" class="vs-inputx vs-input--input normal">
                           </div>
                         </div>
 
