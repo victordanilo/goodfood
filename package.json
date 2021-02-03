@@ -47,6 +47,7 @@
         "vue-form-wizard": "^0.8.4",
         "vue-fullcalendar": "^1.0.9",
         "vue-i18n": "^8.11.2",
+        "vue-i18n-filter": "^0.1.6",
         "vue-instantsearch": "^2.2.1",
         "vue-perfect-scrollbar": "^0.1.0",
         "vue-prism-component": "^1.1.1",
