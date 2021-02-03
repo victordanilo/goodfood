@@ -10,9 +10,11 @@
 
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
+import VueI18nFilter from 'vue-i18n-filter'
 import i18nData from './i18nData'
 
 Vue.use(VueI18n)
+Vue.use(VueI18nFilter)
 
 export default new VueI18n({
   locale: 'pt', // set default locale

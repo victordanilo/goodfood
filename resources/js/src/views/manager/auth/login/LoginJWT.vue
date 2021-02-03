@@ -30,7 +30,7 @@
       <router-link to="/admin/auth/forgot-password" v-if="false">{{ $t('auth.btn_forget_password') }}</router-link>
     </div>
 
-    <google-re-captcha-v3 v-model="reCaptcha.token" ref="captcha" :site-key="reCaptcha.public_key" action="login" />
+    <google-re-captcha-v3 v-model="reCaptcha.token" ref="captcha" :site-key="reCaptcha.public_key" action="login" v-if="this.reCaptcha.show" />
 
     <div class="flex flex-wrap justify-between mb-3">
       <vs-button :disabled="!validateForm" @click="loginJWT" class="w-full">{{ $t('auth.btn_login') }}</vs-button>
@@ -54,7 +54,8 @@ export default {
       reCaptcha: {
         public_key: window.reCaptcha_public_key,
         token: '',
-        status: false
+        status: false,
+        show: false
       }
     }
   },
@@ -139,6 +140,8 @@ export default {
     if (this.checkLogin()) {
       // Navigate User to homepage
       this.$router.push('/manager')
+    } else {
+      this.reCaptcha.show = true
     }
   }
 }

@@ -4,7 +4,6 @@
       <vs-navbar class="vx-navbar navbar-custom navbar-skelton" :color="navbarColorLocal" :class="textColor">
         <logo />
         <vs-spacer />
-        <search-bar />
         <cart-drop-down />
         <notification-drop-down v-show="$acl.check('customer')" />
         <profile-drop-down />
