@@ -49,6 +49,10 @@
                 <td class="font-semibold">CNPJ/CPF</td>
                 <td>{{ company_data.cpf_cnpj }}</td>
               </tr>
+              <tr>
+                <td class="font-semibold">{{ $t('owner') }}</td>
+                <td>{{ company_data.owner }}</td>
+              </tr>
             </table>
           </div>
           <!-- /Information - Col 1 -->
@@ -57,8 +61,8 @@
           <div class="vx-col flex-1" id="account-info-col-2">
             <table>
               <tr>
-                <td class="font-semibold">{{ $t('owner') }}</td>
-                <td>{{ company_data.owner }}</td>
+                <td class="font-semibold">{{ $t('delivery_cost') }}</td>
+                <td> {{ deliveryCost }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">{{ $t('phone') }}</td>
@@ -124,6 +128,7 @@ import _ from 'lodash'
 import masker from 'vue-the-mask/src/masker'
 import tokens from 'vue-the-mask/src/tokens'
 import helpers from '@/helpers'
+import { format } from '@/utils/vMoney'
 import moduleCompanyManagement from '@/store/admin/company-management/moduleCompanyManagement'
 
 export default {
@@ -133,7 +138,15 @@ export default {
       title_account: this.$i18n.t('account'),
       title_address: this.$i18n.t('address'),
       company_data: null,
-      company_not_found: false
+      company_not_found: false,
+      mask_money: {
+        prefix: 'R$ ',
+        suffix: '',
+        decimal: ',',
+        thousands: '.',
+        precision: 2,
+        masked: false
+      }
     }
   },
   computed: {
@@ -145,6 +158,9 @@ export default {
       }
 
       return img
+    },
+    deliveryCost () {
+      return format(this.company_data.delivery_cost, this.mask_money)
     }
   },
   methods: {

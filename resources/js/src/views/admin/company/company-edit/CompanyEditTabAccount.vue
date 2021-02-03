@@ -37,6 +37,9 @@
 
             <vs-input class="w-full mt-4" :label="$t('owner')" v-model="data_local.owner" v-validate="'min:3|max:255'" name="owner"/>
             <span class="text-danger text-sm" v-show="errors.has('owner')">{{ errors.first('owner') }}</span>
+
+            <vs-input class="w-full mt-4" :label="$t('delivery_cost')" :value="delivery_cost_local" v-money="mask.money" @focus="startPrice" @change="changePrice" name="delivery_cost"/>
+            <span class="text-danger text-sm" v-show="errors.has('delivery_cost')">{{ errors.first('delivery_cost') }}</span>
           </div>
         </div>
 
@@ -78,8 +81,13 @@
 <script>
 import _ from 'lodash'
 import helpers from '@/helpers'
+import { VMoney } from 'v-money'
+import { format, unformat } from '@/utils/vMoney'
 
 export default {
+  directives: {
+    money: VMoney
+  },
   props: {
     data: {
       type: Object,
@@ -91,10 +99,22 @@ export default {
   },
   data () {
     return {
-      data_local: _.pick(this.data, ['uuid', 'name', 'trade', 'cpf_cnpj', 'owner', 'email', 'phone', 'avatar']),
+      data_local: _.pick(this.data, ['uuid', 'name', 'trade', 'cpf_cnpj', 'owner', 'delivery_cost', 'email', 'phone', 'avatar']),
       avatar_preview: null,
       password: null,
-      confirm_password: null
+      confirm_password: null,
+      delivery_cost_local: '0.00',
+      mask: {
+        money: {
+          prefix: 'R$ ',
+          suffix: '',
+          decimal: ',',
+          thousands: '.',
+          precision: 2,
+          masked: false
+        },
+        money_start: false
+      }
     }
   },
   computed: {
@@ -116,7 +136,26 @@ export default {
       return img
     }
   },
+  watch: {
+    'data_local.delivery_cost': {
+      immediate: true,
+      handler (newValue, oldValue) {
+        const formatted = format(newValue, this.mask.money)
+        if (formatted !== this.delivery_cost_local) {
+          this.delivery_cost_local = formatted
+        }
+      }
+    }
+  },
   methods: {
+    startPrice () {
+      this.mask.money_start = true
+    },
+    changePrice (evt) {
+      if (this.mask.money_start) {
+        this.data_local.delivery_cost = (unformat(evt.target.value, 2)).toFixed(2)
+      }
+    },
     get_updates () {
       const companyData = helpers.diff_JSON(this.data, this.data_local)
 
