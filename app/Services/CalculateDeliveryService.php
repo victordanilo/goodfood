@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Adbar\Dot;
 use App\Company;
 
 class CalculateDeliveryService
@@ -53,10 +54,11 @@ class CalculateDeliveryService
                 'mode' => 'driving',
                 'language' => 'pt-BR',
             ])
-            ->getResponseByKey('rows.elements')['rows'][0]['elements'][0];
+            ->getResponseByKey('rows.elements');
 
         if ($response['status'] == 'OK') {
-            $distance = (((int) $response['distance']['value']) / 1000);
+            $distanceValue = (int) dot($response)->get('rows.elements.distance.value',0);
+            $distance = ($distanceValue / 1000);
         }
 
         return $distance;
