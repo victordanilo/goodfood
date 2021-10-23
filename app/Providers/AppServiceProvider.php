@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (Schema::hasTable('settings')) {
+        if (db_connected() && Schema::hasTable('settings')) {
             $this->loadConfig();
         }
     }
